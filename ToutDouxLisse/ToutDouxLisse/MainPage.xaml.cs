@@ -13,11 +13,20 @@ namespace ToutDouxLisse
         public MainPage()
         {
             InitializeComponent();
+            tacheService.Trier();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
             tacheService.SupprimerMoinsPrio();
+        }
+
+        private async void ClickGestureRecognizer_Clicked(object sender, EventArgs e)
+        {
+            var stackLayout = (StackLayout)sender;
+            var tache = (Tache)stackLayout.BindingContext;
+
+            await Navigation.PushAsync(new TachePage(tache));
         }
     }
 }

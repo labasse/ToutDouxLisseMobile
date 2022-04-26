@@ -23,18 +23,21 @@
                 <Entry Placeholder="Votre nom" Text="{Binding Name, Source={StaticResource utilisateur}}"/>
             </StackLayout>
             <Button Text="Supprimer le moins prio" Clicked="Button_Clicked"></Button>
-            <CollectionView ItemsSource="{Binding ToutesLesTaches}">
+            <CollectionView ItemsSource="{Binding ToutesLesTaches}" >
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10,0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ClickGestureRecognizer_Clicked"/>
+                            </StackLayout.GestureRecognizers>
                             <BoxView HeightRequest="1" Color="Silver" Margin="3"/>
                             <Label>
                                 <Label.FormattedText >
                                     <FormattedString>
-                                        <Span FontSize="Title" Text="{Binding }"/>
+                                        <Span FontSize="Title" Text="{Binding Nom}"/>
                                         <Span Text=" - "/>
                                         <Span TextColor="{Binding Priorite, Converter={x:StaticResource priorityConverter}}" FontSize="Subtitle" Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"/>
                                     </FormattedString>

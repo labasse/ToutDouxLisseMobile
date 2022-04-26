@@ -54,12 +54,22 @@ namespace ToutDouxLisse
                 Priorite=4
             }
         };
-        
+
+        public void Trier()
+        {
+            var tri = taches.OrderBy(t => t.Date).ToList();
+            taches.Clear();
+            foreach(var t in tri)
+                taches.Add(t);
+        }
+
         public void SupprimerMoinsPrio()
         {
             taches.Remove(taches.OrderByDescending(t => t.Priorite).OrderBy(t => t.Date).First());
         }
 
         public IEnumerable<Tache> ToutesLesTaches => taches;
+
+        
     }
 }
