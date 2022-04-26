@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToutDouxLisse.MainPage"
+             xmlns:app="clr-namespace:ToutDouxLisse">
+    <ContentPage.Resources>
+        <app:TacheService x:Key="service" x:Name="tacheService"/>
+    </ContentPage.Resources>
+    <!-- Commentaire -->
+    <ScrollView BindingContext="{x:StaticResource service}">
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" 
+                     HorizontalOptions="EndAndExpand"
+                     BindingContext="{x:StaticResource utilisateur}">
+                <Label Text="{Binding Name}"/>
+                <Image Source="{Binding Photo}" WidthRequest="30" HeightRequest="30" Aspect="Fill"/>
+            </StackLayout>
+            <Frame  Style="{x:StaticResource Titre}">
+                <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+            <StackLayout Orientation="Horizontal">
+                <Label>Nom</Label>
+                <Entry Placeholder="Votre nom" Text="{Binding Name, Source={StaticResource utilisateur}}"/>
+            </StackLayout>
+            <Button Text="Supprimer le moins prio" Clicked="Button_Clicked"></Button>
+            <CollectionView ItemsSource="{Binding ToutesLesTaches}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,0">
+                            <BoxView HeightRequest="1" Color="Silver" Margin="3"/>
+                            <Label>
+                                <Label.FormattedText >
+                                    <FormattedString>
+                                        <Span FontSize="Title" Text="{Binding }"/>
+                                        <Span Text=" - "/>
+                                        <Span TextColor="{Binding Priorite, Converter={x:StaticResource priorityConverter}}" FontSize="Subtitle" Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label FontSize="Default" Text="{Binding Description}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

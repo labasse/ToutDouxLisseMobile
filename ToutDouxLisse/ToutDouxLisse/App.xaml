@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToutDouxLisse.App"
+             xmlns:app="clr-namespace:ToutDouxLisse">
+    <Application.Resources>
+        <app:Utilisateur 
+            x:Key="utilisateur" 
+            Id="123" 
+            Name="Sylvain" 
+            Photo="https://github.com/labasse.png"/>
+        <app:ColorPriorityConverter
+            x:Key="priorityConverter"
+            High="Red"
+            Medium="Orange"
+            Low="Green"
+            />
+        <!--Style TargetType="VisualElement" x:Key="Common">
+            <Setter Property="BackgroundColor" Value="White"/>
+        </Style-->
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light='#2196F3', Dark='#3f637f'}"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <!--Style TargetType="Frame" x:Key="Titre" BasedOn="{StaticResource Common}"-->
+        <Style TargetType="Frame" x:Key="Titre">
+            <Setter Property="Padding" Value="24"/>
+        </Style>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                    <Setter Property="BackgroundColor" Value="Lavender"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Application.Resources>
+</Application>
